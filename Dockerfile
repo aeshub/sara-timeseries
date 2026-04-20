@@ -1,4 +1,4 @@
-FROM python:3.13-slim AS build
+FROM python:3.14-slim AS build
 
 RUN apt-get update && apt-get install -y --no-install-recommends\
     wget \
@@ -24,7 +24,7 @@ COPY . .
 RUN --mount=source=.git,target=.git,type=bind
 RUN pip install .
 
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 WORKDIR /app
 COPY --from=build /app/venv /app/venv
